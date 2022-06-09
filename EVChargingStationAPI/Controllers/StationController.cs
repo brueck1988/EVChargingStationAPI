@@ -13,7 +13,7 @@ namespace EVChargingStationAPI.Controllers
     {
         private readonly DataContext _context;
 
-        public SuperHeroController(DataContext context)
+        public StationController(DataContext context)
         {
             _context = context;
         }
