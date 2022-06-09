@@ -11,6 +11,13 @@ namespace EVChargingStationAPI.Controllers
     [ApiController]
     public class StationController : ControllerBase
     {
+        private readonly DataContext _context;
+
+        public SuperHeroController(DataContext context)
+        {
+            _context = context;
+        }
+        
         // GET: api/Station
         [HttpGet]
         public IEnumerable<string> Get()
