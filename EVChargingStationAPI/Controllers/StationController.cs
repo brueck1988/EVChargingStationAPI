@@ -20,9 +20,9 @@ namespace EVChargingStationAPI.Controllers
         
         // GET: api/Station
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<Station>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _context.Stations.ToListAsync());
         }
 
         // GET: api/Station/5
