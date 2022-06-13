@@ -26,10 +26,13 @@ namespace EVChargingStationAPI.Controllers
         }
 
         // GET: api/Station/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Station>> Get(int id)
         {
-            return "value";
+            var station = await _context.Stations.FindAsync(id);
+            if (station == null)
+                return BadRequest("Station not found.");
+            return Ok(station);
         }
 
         // POST: api/Station
