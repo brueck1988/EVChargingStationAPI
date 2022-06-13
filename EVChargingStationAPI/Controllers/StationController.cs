@@ -46,9 +46,15 @@ namespace EVChargingStationAPI.Controllers
         }
 
         // PUT: api/Station/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<ActionResult<List<Station>>> UpdateStation(Station request)
         {
+            var dbStation = await _context.Stations.FindAsync(request.Id);
+            if (dbStation == null)
+                return BadRequest("Station not found.");
+            dbStation.ApiId = request.ApiId;
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Stations.ToListAsync());
         }
 
         // DELETE: api/Station/5
