@@ -45,7 +45,7 @@ namespace EVChargingStationAPI.Controllers
             return Ok(await _context.Stations.ToListAsync());
         }
 
-        // PUT: api/Station/5
+        // PUT: api/Station
         [HttpPut]
         public async Task<ActionResult<List<Station>>> UpdateStation(Station request)
         {
