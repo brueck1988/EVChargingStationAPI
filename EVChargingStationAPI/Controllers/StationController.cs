@@ -59,8 +59,16 @@ namespace EVChargingStationAPI.Controllers
 
         // DELETE: api/Station/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<List<Station>>> DeleteStation(int id)
         {
+            var dbStation = await _context.Stations.FindAsync(id);
+            if (dbStation == null)
+                return BadRequest("Station not found.");
+
+            _context.Stations.Remove(dbStation);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Stations.ToListAsync());
         }
     }
 }
