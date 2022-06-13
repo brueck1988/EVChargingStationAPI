@@ -34,8 +34,12 @@ namespace EVChargingStationAPI.Controllers
 
         // POST: api/Station
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<List<Station>>> AddHero(Station station)
         {
+            _context.Stations.Add(station);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Stations.ToListAsync());
         }
 
         // PUT: api/Station/5
